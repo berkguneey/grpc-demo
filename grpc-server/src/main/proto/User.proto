@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.server.grpc";
+option java_outer_classname = "UserProto";
+
+import "google/protobuf/empty.proto";
+
+package user;
+
+service User {
+  rpc GetUsers (google.protobuf.Empty) returns (UsersResponse);
+  rpc GetUser (GetUserRequest) returns (UserResponse);
+}
+
+message UserObj {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  int32 age = 4;
+}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message UsersResponse {
+  repeated UserObj users = 1;
+}
+
+message UserResponse {
+  UserObj user = 1;
+}
